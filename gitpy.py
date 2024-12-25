@@ -9,7 +9,7 @@ class Blob:
 
     def _generate_hash(self, content):
         """Generate SHA-1 hash of the file content"""
-        return hashlib.sha1(content.encode('utf-8')).hexdigest()
+        return hashlib.sha1(content.encode("utf-8")).hexdigest()
 
     def __repr__(self):
         return f"Blob({self.hash})"
@@ -49,11 +49,11 @@ class Commit:
     def _generate_commit_hash(self):
         """Generate the hash for the Commit"""
         content = f"{self.tree_hash()}{self.message}{self.author}{self.timestamp}"
-        return hashlib.sha1(content.encode('utf-8')).hexdigest()
+        return hashlib.sha1(content.encode("utf-8")).hexdigest()
 
     def tree_hash(self):
         """Generate the hash for the Tree"""
-        return ''.join(blob.hash for blob in self.tree.entries.values())
+        return "".join(blob.hash for blob in self.tree.entries.values())
 
     def __repr__(self):
         return f"Commit({self.hash}, {self.message})"
